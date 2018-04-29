@@ -16,6 +16,11 @@ public class MainActivity extends Activity {
     private char mOperator;
     private TextView mText;
     private TextView mDisplay;
+    private boolean mIsFloat=false;
+    private boolean mIsNewOp=true;
+
+
+    //CONSTANT TO STORE BUNDLE
     private static final String TAG = "LIFECYCLE";
     private static final String RESULT = "result";
     private static final String OPERATION = "operation";
@@ -23,8 +28,8 @@ public class MainActivity extends Activity {
     private static final String NUMBERB = "numberB";
     private static final String ISNEWOP = "isNewOp";
     private static final String LASTINSERT = "lastinsert";
-    private boolean mIsFloat=false;
-    private boolean mIsNewOp=true;
+    private static final String DISPLAY = "display";
+
 
 
 
@@ -43,19 +48,15 @@ public class MainActivity extends Activity {
 
         } else {
             mResult=savedInstanceState.getDouble(RESULT);
-            Log.d(TAG, "Result"+mResult);
-
             mOperator=savedInstanceState.getChar(OPERATION);
             mNumber=savedInstanceState.getDouble(NUMBER);
             mNumberB=savedInstanceState.getDouble(NUMBERB);
             mIsNewOp=savedInstanceState.getBoolean(ISNEWOP);
-            Log.d(TAG, "NumberB"+mNumberB);
-            Log.d(TAG, "Operator"+mOperator);
-            Log.d(TAG, "Number"+mNumber);
+            mDisplay.setText(""+savedInstanceState.getString(DISPLAY));
             mText.setText(mResult+"");
         }
 
-        //collego il layout dei tasti numerici a un oggetto di tipo buttom
+        //BINDING LAYOUT WITH NUMBER BUTTONS
         Button vButton1 = findViewById(R.id.n1);
         Button vButton2 = findViewById(R.id.n2);
         Button vButton3 = findViewById(R.id.n3);
@@ -67,7 +68,7 @@ public class MainActivity extends Activity {
         Button vButton9 = findViewById(R.id.n9);
         Button vButton0 = findViewById(R.id.n0);
 
-        //collego il layout dei tasti operazione a un oggetto di tipo buttom
+        //BINDING LAYOUT WITH OPERATION BUTTONS
         Button vPlus = findViewById(R.id.buttonPlus);
         Button vSub = findViewById(R.id.buttonSub);
         Button vMol = findViewById(R.id.buttonMol);
@@ -78,7 +79,7 @@ public class MainActivity extends Activity {
         Button vSign=  findViewById(R.id.buttonSign);
         Button vAc=  findViewById(R.id.buttonReset);
 
-        //ADDIZIONE
+        //ADDCTION BUTTON
         vPlus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -94,7 +95,7 @@ public class MainActivity extends Activity {
         });
 
 
-        //SOTTRAZIONE
+        //SUBTRACTION BUTTON
         vSub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -109,7 +110,7 @@ public class MainActivity extends Activity {
         });
 
 
-        //MOLTIPLICAZIONE
+        //MOLTIPLICATION BUTTON
         vMol.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -125,7 +126,7 @@ public class MainActivity extends Activity {
         });
 
 
-        //DIVISIONE
+        //DIVISION BUTTON
         vDiv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -139,7 +140,7 @@ public class MainActivity extends Activity {
             }
         });
 
-        //PERCENTUALE
+        //PERCENTAGE BUTTON
         vPer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -155,7 +156,7 @@ public class MainActivity extends Activity {
 
 
 
-        //UGUALE
+        //EQUALS TO BUTTON
         vEqual.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -212,11 +213,12 @@ public class MainActivity extends Activity {
         });
 
 
-        //AC
+        //AC BUTTON
         vAc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mText.setText("0");
+                mDisplay.setText("");
                 mIsNewOp=true;
                 mIsFloat=false;
                 mResult=0;
@@ -473,12 +475,14 @@ public class MainActivity extends Activity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        Log.d(TAG,"onSaveIstanceState");
         outState.putDouble(RESULT, mResult);
         outState.putChar(OPERATION, mOperator);
         outState.putDouble(NUMBERB, mNumberB);
         outState.putBoolean(ISNEWOP, mIsNewOp);
         outState.putDouble(LASTINSERT, mCounter);
+        outState.putString(DISPLAY, mDisplay.getText().toString());
+
+        Log.d(TAG,"onSaveIstanceState");
     }
 
     private void saveDisplay() {
