@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends Activity {
-    private double mCounter;
+    //private double mCounter;
     private double mNumber;
     private double mNumberB;
     private double mResult;
@@ -40,7 +40,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         mText =findViewById(R.id.results);
         mDisplay=findViewById(R.id.display);
-        saveDisplay();
+        //saveDisplay();
 
         if (savedInstanceState==null){
             Log.d(TAG, "Lancio");
@@ -121,7 +121,7 @@ public class MainActivity extends Activity {
 
                 mText.setText("0");
                 mIsFloat=false;
-                saveDisplay();
+                //saveDisplay();
             }
         });
 
@@ -136,7 +136,7 @@ public class MainActivity extends Activity {
                 mDisplay.setText(mDisplay.getText()+"/");
                 mText.setText("0");
                 mIsFloat=false;
-                saveDisplay();
+                //saveDisplay();
             }
         });
 
@@ -149,7 +149,7 @@ public class MainActivity extends Activity {
                 mTextResult=String.valueOf(mResult);
                 mText.setText(mTextResult);
                 mDisplay.setText(mDisplay.getText()+mTextResult);
-                saveDisplay();
+                //saveDisplay();
 
                 }
         });
@@ -170,7 +170,7 @@ public class MainActivity extends Activity {
                     mResult=addiction();
                     mTextResult=String.valueOf(mResult);
                     mText.setText(mTextResult);
-                    saveDisplay();
+                    //saveDisplay();
 
 
                 }
@@ -180,7 +180,7 @@ public class MainActivity extends Activity {
                     mResult=subtraction();
                     mTextResult=String.valueOf(mResult);
                     mText.setText(mTextResult);
-                    saveDisplay();
+                    //saveDisplay();
 
                 }
                 else if (mOperator=='*'){
@@ -188,7 +188,7 @@ public class MainActivity extends Activity {
                     mResult=moltiplication();
                     mTextResult=String.valueOf(mResult);
                     mText.setText(mTextResult);
-                    saveDisplay();
+                    //saveDisplay();
 
 
                 }
@@ -197,7 +197,7 @@ public class MainActivity extends Activity {
                     mResult=division();
                     mTextResult=String.valueOf(mResult);
                     mText.setText(mTextResult);
-                    saveDisplay();
+                    //saveDisplay();
 
                 }
 
@@ -236,13 +236,13 @@ public class MainActivity extends Activity {
                 if (mIsNewOp) {
                     mText.setText("1");
                     mIsNewOp=false;
-                    saveDisplay();
+                    //saveDisplay();
                 } else {
                     mText.setText(mText.getText() + "1");
 
                 }
                 mDisplay.setText(mDisplay.getText()+"1");
-                saveDisplay();
+                //saveDisplay();
 
             }
         });
@@ -257,7 +257,7 @@ public class MainActivity extends Activity {
                     mText.setText(mText.getText() + "2");
                 }
                 mDisplay.setText(mDisplay.getText()+"2");
-                saveDisplay();
+                //saveDisplay();
 
             }
         });
@@ -273,7 +273,7 @@ public class MainActivity extends Activity {
 
                 }
                 mDisplay.setText(mDisplay.getText()+"3");
-                saveDisplay();
+                //saveDisplay();
             }
 
         });
@@ -288,7 +288,7 @@ public class MainActivity extends Activity {
                     mText.setText(mText.getText() + "4");
                 }
                 mDisplay.setText(mDisplay.getText()+"4");
-                saveDisplay();
+                //saveDisplay();
 
             }
         });
@@ -303,7 +303,7 @@ public class MainActivity extends Activity {
                     mText.setText(mText.getText() + "5");
                 }
                 mDisplay.setText(mDisplay.getText()+"5");
-                saveDisplay();
+                //saveDisplay();
 
             }
         });
@@ -318,7 +318,7 @@ public class MainActivity extends Activity {
                     mText.setText(mText.getText() + "6");
                 }
                 mDisplay.setText(mDisplay.getText()+"6");
-                saveDisplay();
+                //saveDisplay();
 
             }
         });
@@ -389,7 +389,7 @@ public class MainActivity extends Activity {
             }
         });
 
-        //VIRGOLA
+        //COMMA
         vComma.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -399,7 +399,7 @@ public class MainActivity extends Activity {
                     mIsNewOp=false;
                 }else {
                      if (mIsFloat==false){mText.setText(mText.getText() + ".");
-                         mDisplay.setText(mDisplay.getText()+"0");
+                         mDisplay.setText(mDisplay.getText()+".");
                          mIsFloat=true; }
                      else {  }
                      }
@@ -479,14 +479,14 @@ public class MainActivity extends Activity {
         outState.putChar(OPERATION, mOperator);
         outState.putDouble(NUMBERB, mNumberB);
         outState.putBoolean(ISNEWOP, mIsNewOp);
-        outState.putDouble(LASTINSERT, mCounter);
+       // outState.putDouble(LASTINSERT, mCounter);
         outState.putString(DISPLAY, mDisplay.getText().toString());
 
         Log.d(TAG,"onSaveIstanceState");
     }
 
     private void saveDisplay() {
-            mCounter = Double.parseDouble(mText.getText().toString());
+           // mCounter = Double.parseDouble(mText.getText().toString());
     }
 
 
